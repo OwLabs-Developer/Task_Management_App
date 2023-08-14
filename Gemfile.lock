@@ -246,6 +246,7 @@ PLATFORMS
 
 DEPENDENCIES
   actioncable (~> 7.0.7)
+  bcrypt
   bootsnap
   capybara
   debug

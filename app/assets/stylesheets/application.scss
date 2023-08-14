@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+ @import "category.scss";
+ @import "dashboard.scss";
+ @import "notification.scss";
+ @import "task.scss";
+ @import "user.scss";

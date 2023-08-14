@@ -9,6 +9,7 @@ gem 'sass-rails', '>= 6'
 
 # Authentication (for local development)
 gem 'devise'
+gem 'bcrypt'
 
 # Real-time updates
 gem 'redis', '~> 4.0'
