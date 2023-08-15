@@ -1,15 +1,15 @@
 <%= form_with(url: sessions_path) do |f| %>
-    <div>
-        <%= f.label :username %>
+    <div class="form">
+        <%= f.label :username, class: "input-label" %>
         <%= f.text_field :username %>
     </div>
 
-    <div>
-        <%= f.label :password %>
+    <div class="form">
+        <%= f.label :password, class: "input-label" %>
         <%= f.password_field :password %>
     </div>
 
     <div>
-    <%= f.submit 'Login' %>
+    <%= f.submit 'Login', class: 'button' %>
     </div>
 <% end %>
