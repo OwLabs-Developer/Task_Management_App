@@ -6,6 +6,7 @@ ruby "3.2.2"
 # Frontend
 gem 'webpacker', '~> 5.0'
 gem 'sass-rails', '>= 6'
+gem 'bootstrap', '~> 5.3.1'
 
 # Authentication (for local development)
 gem 'devise'

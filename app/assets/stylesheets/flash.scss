@@ -1,0 +1,19 @@
+/* app/assets/stylesheets/flash.css */
+
+.flash {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .flash-success {
+    background-color: #28a745;
+  }
+  
+  .flash-alert {
+    background-color: #dc3545;
+  }
+  
