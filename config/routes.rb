@@ -1,18 +1,56 @@
+# Rails.application.routes.draw do
+#   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+#   # Defines the root path route ("/")
+#   # root "articles#index"
+
+
+#   resources :notifications, only: [:show, :update] do
+#     collection do
+#       put :read_all
+#     end
+#   end
+# end
+
+#   resources :users
+
+#   resources :sessions, only: [:new, :create, :destroy]
+#   get 'logout', to: 'sessions#destroy'
+  
+#   resources :tasks
+#   resources :categories
+#   resources :dashboards
+#   resources :notifications
+  
+
+#   root 'dashboards#landing_page'
+# end
+
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
 
-  resources :users
+  root 'dashboards#landing_page'
+
+  
+  get 'confirmation', to: 'users#confirmation', as: 'confirmation'
+
+  resources :users do
+    member do
+      get 'verify_email_user', to: 'users#verify_email', as: 'verify_email'
+    end
+  end
+  
+
 
   resources :sessions, only: [:new, :create, :destroy]
   get 'logout', to: 'sessions#destroy'
-  
   resources :tasks
   resources :categories
   resources :dashboards
-  resources :notifications
-
-  root 'dashboards#landing_page'
+  resources :notifications, only: [:show, :update] do
+    collection do
+      put :read_all
+    end
+  end
 end

@@ -12,19 +12,19 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-
+.env
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
 !/tmp/pids/
 !/tmp/pids/.keep
-
+.env
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
 
 /public/assets
 .byebug_history
-
+.env
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
@@ -34,3 +34,4 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+.env
