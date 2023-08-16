@@ -3,3 +3,4 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "flash";
 import "label_behavior";
+import "navbar";
