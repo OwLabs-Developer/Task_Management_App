@@ -16,6 +16,21 @@ class UsersController < ApplicationController
         end
     end
 
+    #Edit user profile
+    def edit
+        @user = current_user
+    end
+
+    #Handle edit user account
+    def update
+        @user = current_user
+        if @user.update(user_params)
+            redirect_to root_path, success: "Account has been updated successfully!"
+        else
+            redirect_to edit_user_path, info: "Your account is not fully updated!"
+        end
+    end
+
     private
 
     def user_params
