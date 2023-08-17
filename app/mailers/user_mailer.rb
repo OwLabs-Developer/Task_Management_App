@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
     def welcome_email(user)
       @user = user
   
-      # Create an instance of the AWS SES client
+      # Create an instance of the AWS SES client ss
       ses_client = Aws::SES::Client.new
   
       # Prepare the email content
