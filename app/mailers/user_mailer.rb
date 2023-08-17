@@ -1,33 +1,31 @@
-require 'mailjet'
-
 class UserMailer < ApplicationMailer
-  def send_verification_email(user, verification_token)
-    Mailjet.configure do |config|
-      config.api_key = ENV['MAILJET_API_KEY']
-      config.secret_key = ENV['MAILJET_API_SECRET']
-      config.default_from = 'syafiqafro@gmail.com'
-      config.api_version = 'v3.1'
-    end
-
-    @user = user
-    mailjet_message = Mailjet::Send.create(messages: [{
-      'From' => {
-        'Email' => 'syafiqafro@gmail.com',
-        'Name' => 'OWL_SYAFIQ'
-      },
-      'To' => [
-        {
-          'Email' => @user.email,
-          'Name' => @user.username
+    def welcome_email(user)
+      @user = user
+  
+      # Create an instance of the AWS SES client
+      ses_client = Aws::SES::Client.new
+  
+      # Prepare the email content
+      email_subject = 'Welcome to Our App!'
+      email_body = render_to_string(template: 'user_mailer/welcome_email', layout: nil, formats: [:text])
+  
+      # Send the email using the AWS SDK
+      ses_client.send_email({
+        source: 'noreply@owlabs.online', # Replace with your sender email
+        destination: {
+          to_addresses: [@user.email]
+        },
+        message: {
+          subject: {
+            data: email_subject
+          },
+          body: {
+            text: {
+              data: email_body
+            }
+          }
         }
-      ],
-      'Subject' => 'Email Verification',
-      'TextPart' => 'Click the link to verify your email',
-      'HTMLPart' => '<h3>Click the link to verify your email</h3>'
-    }])
+      })
+    end
   end
-end
-
-
-
-
+  

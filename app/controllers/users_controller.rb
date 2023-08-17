@@ -9,32 +9,28 @@ class UsersController < ApplicationController
     # Handle user creation account and save to the database
     def create
         @user = User.new(user_params)
-
+        
         if @user.save
-            # Generate a verification token
-            verification_token = SecureRandom.hex(16)
-            @user.update(verification_token: verification_token)
-
-            # Send verification email
-            UserMailer.send_verification_email(@user, verification_token).deliver_now
-
-            # Redirect to a confirmation page or login page
-            redirect_to root_path, success: 'Account created successfully! Please check your email to verify your address.'
+            UserMailer.welcome_email(@user).deliver_now
+          
+          redirect_to root_path, success: 'Account created successfully! Please check your email to verify your address.'
         else
-            redirect_to new_user_path, danger: "Please key in all of the details"
+          redirect_to new_user_path, danger: "Please key in all of the details"
         end
-    end
+      end
+      
+      
 
-    def verify_email
-        @user = User.find_by(verification_token: params[:token])
+    # def verify_email
+    #     @user = User.find_by(verification_token: params[:token])
 
-        if @user
-            @user.update(verification_token: nil, verified: true)
-            redirect_to root_path, success: 'Account created successfully! Please check your email to verify your address.'
-        else
-            redirect_to root_path, alert: 'Invalid verification token.'
-        end
-    end
+    #     if @user
+    #         @user.update(verification_token: nil, verified: true)
+    #         redirect_to root_path, success: 'Account created successfully! Please check your email to verify your address.'
+    #     else
+    #         redirect_to root_path, alert: 'Invalid verification token.'
+    #     end
+    # end
   
 
     # Edit user profile

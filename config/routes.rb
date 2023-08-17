@@ -29,28 +29,33 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+ constraints host: 'owlabs.online' do
+    root 'dashboards#landing_page'  # Replace 'home#index' with your desired controller and action
+    # Add more routes as needed
 
-  root 'dashboards#landing_page'
+    get 'confirmation', to: 'users#confirmation', as: 'confirmation'
 
-  
-  get 'confirmation', to: 'users#confirmation', as: 'confirmation'
-
-  resources :users do
-    member do
-      get 'verify_email_user', to: 'users#verify_email', as: 'verify_email'
+    resources :users do
+      member do
+        get 'verify_email_user', to: 'users#verify_email', as: 'verify_email'
+      end
+    end
+    
+    resources :sessions, only: [:new, :create, :destroy]
+    get 'logout', to: 'sessions#destroy'
+    resources :tasks
+    resources :categories
+    resources :dashboards
+    resources :notifications, only: [:show, :update] do
+      collection do
+        put :read_all
+      end
     end
   end
   
-
-
-  resources :sessions, only: [:new, :create, :destroy]
-  get 'logout', to: 'sessions#destroy'
-  resources :tasks
-  resources :categories
-  resources :dashboards
-  resources :notifications, only: [:show, :update] do
-    collection do
-      put :read_all
-    end
-  end
 end
+
+
+  
+  
+

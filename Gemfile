@@ -11,12 +11,10 @@ gem 'bootstrap', '~> 5.3.1'
 # Authentication (for local development)
 gem 'devise'
 gem 'bcrypt'
-gem 'aws-sdk-ses'
-gem 'aws-sdk-rails'
 gem 'dotenv'
 gem 'securerandom'
-gem 'mailjet'
-
+gem 'mailboxer'
+gem 'aws-sdk-ses', require: false
 
 
 # Real-time updates
