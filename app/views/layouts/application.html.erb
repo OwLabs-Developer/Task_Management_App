@@ -9,7 +9,7 @@
     <%= csp_meta_tag %>
     <%= favicon_link_tag asset_path('owl.png') %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", media: 'all', "data-turbo-track": "reload" %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
@@ -18,7 +18,7 @@
     <%= render 'layouts/navbar' %>
     <%= render 'layouts/flash' %>
 
-    <div class=""container>
+    <div class="container-fluid main">
         <%= yield %>
     </div>
 
@@ -26,6 +26,7 @@
     <%= javascript_include_tag "navbar" %>
     <%= javascript_include_tag "flash" %>
     <%= javascript_include_tag "label_behavior" %>
+    <%= javascript_include_tag "switch_theme" %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

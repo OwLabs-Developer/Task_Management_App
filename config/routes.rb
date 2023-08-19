@@ -29,7 +29,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
- constraints host: 'owlabs.online' do
+#  constraints host: 'owlabs.online' do
     root 'dashboards#landing_page'  # Replace 'home#index' with your desired controller and action
     # Add more routes as needed
 
@@ -45,7 +45,12 @@ Rails.application.routes.draw do
     get 'logout', to: 'sessions#destroy'
     resources :tasks
     resources :categories
+
     resources :dashboards
+    get '/about', to: 'dashboards#about'
+    get '/features', to: 'dashboards#features'
+    get '/pricing', to: 'dashboards#pricing'
+
     resources :notifications, only: [:show, :update] do
       collection do
         put :read_all
@@ -53,7 +58,7 @@ Rails.application.routes.draw do
     end
   end
   
-end
+# end
 
 
   

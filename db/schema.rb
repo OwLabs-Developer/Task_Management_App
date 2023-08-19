@@ -87,11 +87,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_152519) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
-    t.text "profile_information"
-    t.text "preferences"
+    t.string "profile_information"
+    t.string "theme_preferences"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "verification_token"
   end
 
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"

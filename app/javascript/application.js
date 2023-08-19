@@ -4,3 +4,4 @@ import "controllers"
 import "flash";
 import "label_behavior";
 import "navbar";
+import "switch_theme";

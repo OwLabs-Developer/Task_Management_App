@@ -3,21 +3,19 @@
 <div class="center-container">
 
     <% if current_user %>
-    <h1><%= image_tag "owl.png" %>Welcome to OwLabs, <%= current_user.username %></h1>
-        <div>
-            <%= link_to 'Log Out', logout_path, method: :delete, class: 'button' %>
+        <div class=""> 
+            <h1>
+                Welcome to OwLabs, <%= current_user.username %>
+            </h1>
+                <%= link_to 'Log Out', logout_path, method: :delete, class: 'button' %>
         </div>
         <br>
     <% else %>
         <h1><%= image_tag "owl.png" %>Welcome to OwLabs</h1>
-        <div class="float-container">
-            <div>
+        <div class="">
                 <%= link_to 'Log In', new_session_path, class: 'button' %>
-            </div>
 
-            <div>
                 <%= link_to 'Sign Up', new_user_path, class: 'button' %>
-            </div>
         </div>
     <% end %>
 </div>

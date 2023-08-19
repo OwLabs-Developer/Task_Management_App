@@ -13,9 +13,9 @@
  *= require_tree .
  *= require_self
  */
-body {
-    background-color: rgb(27, 37, 41) !important;
-}
+// body {
+//     background-color: rgb(27, 37, 41) !important;
+// }
 
  @import "category.scss";
  @import "dashboard.scss";
