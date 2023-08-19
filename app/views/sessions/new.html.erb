@@ -1,7 +1,11 @@
 <% content_for :title, "Log In" %>
 
 <div class="center-container">
-    <h1> Login Form </h1>
-    <br>
-    <%= render 'login_form' %>
+  <h1> Login Form </h1>
+  <br>
+  <%= render 'login_form' %>
+  
+  <% if session[:username] %>
+    <p>Please verify your email before logging in. An email has been sent to <%= session[:username] %>.</p>
+  <% end %>
 </div>

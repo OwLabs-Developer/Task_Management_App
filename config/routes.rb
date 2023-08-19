@@ -29,11 +29,16 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+<<<<<<< HEAD
 #  constraints host: 'owlabs.online' do
     root 'dashboards#landing_page'  # Replace 'home#index' with your desired controller and action
     # Add more routes as needed
 
     get 'confirmation', to: 'users#confirmation', as: 'confirmation'
+=======
+  constraints host: 'owlabs.online' do
+    root 'dashboards#landing_page'
+>>>>>>> 8f19290799cec9fbd9240a4a94eb1d6f65558434
 
     resources :users do
       member do
@@ -41,7 +46,13 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :sessions, only: [:new, :create, :destroy]
+    resources :sessions, only: [:new, :create, :destroy] do
+      member do
+        get :verify_email
+        post :resend_verification_email
+      end
+    end
+
     get 'logout', to: 'sessions#destroy'
     resources :tasks
     resources :categories
@@ -56,9 +67,19 @@ Rails.application.routes.draw do
         put :read_all
       end
     end
+
+    # Custom route for verify_email in SessionsController
+    get '/sessions/:token/verify_email/:username', to: 'sessions#verify_email', as: :verify_email_session_custom
   end
+<<<<<<< HEAD
   
 # end
+=======
+end
+>>>>>>> 8f19290799cec9fbd9240a4a94eb1d6f65558434
+
+
+  
 
 
   

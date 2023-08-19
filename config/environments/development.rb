@@ -39,7 +39,7 @@ Rails.application.configure do
 
   config.hosts << "owlabs.online"
 
-  config.action_mailer.default_url_options = { host: 'owlabs.online', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'owlabs.online', port: 3000 } # Adjust this to your actual host
   config.action_mailer.default_options = { from: 'noreply@owlabs.online' }
   config.action_mailer.delivery_method = :aws_sdk
 
