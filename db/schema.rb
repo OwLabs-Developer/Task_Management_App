@@ -91,14 +91,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_190517) do
     t.string "theme_preferences"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
-=======
-    t.string "verification_token"
     t.boolean "verified", default: false
-    t.datetime "verification_token_expires_at", precision: nil, null: false
+    t.datetime "verification_token_expires_at"
     t.string "reset_token"
     t.datetime "reset_token_expires_at"
->>>>>>> 8f19290799cec9fbd9240a4a94eb1d6f65558434
   end
 
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
