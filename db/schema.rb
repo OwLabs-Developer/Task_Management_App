@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_18_190517) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_20_102648) do
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -87,14 +87,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_190517) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
-    t.string "profile_information"
-    t.string "theme_preferences"
+    t.text "profile_information"
+    t.text "preferences"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "verification_token"
     t.boolean "verified", default: false
-    t.datetime "verification_token_expires_at"
-    t.string "reset_token"
+    t.datetime "verification_token_expires_at", precision: nil, null: false
+    t.string "password_reset_token"
     t.datetime "reset_token_expires_at"
+    t.datetime "reset_token_used_at"
   end
 
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
