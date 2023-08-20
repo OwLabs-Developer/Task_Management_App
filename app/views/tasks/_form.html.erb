@@ -1,0 +1,35 @@
+<%= form_with(model: @task) do |form| %>
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :due_date %>
+    <%= form.date_field :due_date %>
+  </div>
+
+  <div>
+    <%= form.label :priority %>
+    <%= form.number_field :priority %>
+  </div>
+
+  <div>
+    <%= form.label :status %>
+    <%= form.check_box :status %>
+  </div>
+
+  <div>
+    <%= form.label :category %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div>
+    <%= form.submit 'Save Task' %>
+  </div>
+<% end %>

@@ -7,6 +7,7 @@
             <h1>
                 Welcome to OwLabs, <%= current_user.username %>
             </h1>
+                <%= link_to 'Your Task', tasks_path, class: 'button' %>
                 <%= link_to 'Log Out', logout_path, method: :delete, class: 'button' %>
         </div>
         <br>

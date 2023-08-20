@@ -79,8 +79,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_190517) do
     t.integer "priority"
     t.boolean "status"
     t.string "category"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -91,6 +93,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_190517) do
     t.string "theme_preferences"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "verification_token"
     t.boolean "verified", default: false
     t.datetime "verification_token_expires_at"
     t.string "reset_token"

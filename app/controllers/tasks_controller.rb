@@ -1,48 +1,58 @@
 class TasksController < ApplicationController
-   before_action :set_task, only:[:show, :edit, :update, :destroy]
+   before_action :find_task, only:[:show, :edit, :update, :destroy]
 
-    def index  # To display all list task in main page
-        @tasks = Task.all
+   # To display all list task in main page
+    def index  
+        @tasks = current_user.tasks
     end
 
-    def show # To display current task
-        @task = Task.find(params[:id])
+    # To display current task
+    def show 
+        @task = current_user.tasks.find(params[:id])
     end
 
-    def new # Create new TASK instance for user input 
+    # Create new TASK instance for user input 
+    def new 
         @task = Task.new
     end
 
-    def create # To handle task creation process and save to database
-        @task = Task.new(task_params)
+     # To handle task creation process and save to database
+    def create
+        @task = current_user.tasks.build(task_params)
         if @task.save
-            redirect_to root_path, notice: "New task has been created successfully"
+            redirect_to tasks_path, success: "New task has been created successfully!"
         else 
-            render :new
+            redirect_to new_task_path, warning: "Please key in all of the details!"
+        end
+    end
     
-    def edit # Retrieve current task data for reupdate.
+    # Retrieve current task data for reupdate.
+    def edit
+        @task = current_user.tasks.find(params[:id]) 
     end
 
     def update # Reupdate task edit by user
        if @task = Task.update(task_params)
-        redirect_to root_path, notice: "Task has succesfully updated"
+        redirect_to tasks_path, success: "Task has been succesfully updated!"
         else
             render :edit
         end
     end
 
-    def destroy # To delete task
-        @task = Task.destroy
-        redirect_to root_path, notice: "Current task DELETED"
+    # To delete task
+    def destroy 
+        @task.destroy
+        redirect_to tasks_path, info: "Task was successfully deleted"
     end
     
     private
+
     def task_params
-        params.require(:task).permit(:title, :description, :due_date)
+        params.require(:task).permit(:title, :description, :due_date, :priority, :status, :category)
     end
 
-    def set_task
-        @task = Task.find(params[:id])
+    def find_task
+        @task = current_user.tasks.find(params[:id])
     end
     
 end

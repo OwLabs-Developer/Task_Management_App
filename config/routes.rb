@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     end
 
     get 'logout', to: 'sessions#destroy'
+    
     resources :tasks
     resources :categories
 
