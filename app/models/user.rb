@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   # Callbacks
   before_create :set_verification_token_expires_at
-
+  attr_accessor :reset_token
   # Methods
 
   # Generate a new verification token with expiration
@@ -28,6 +28,25 @@ class User < ApplicationRecord
     Rails.logger.info("New Token: #{new_token}")
     Rails.logger.info("New Expiry: #{new_expiry}")
   end
+
+  def self.find_by_password_reset_token(token)
+    find_by(password_reset_token: token)
+  end
+
+  def password_reset_token_valid?
+    # Check if reset_token_expires_at is in the future
+    return false unless reset_token_expires_at
+
+    reset_token_expires_at > Time.now
+  end
+
+  def generate_password_reset_token
+    self.password_reset_token = SecureRandom.urlsafe_base64
+    self.reset_token_expires_at = 1.hour.from_now
+    self.reset_token_used_at = nil  # Reset the token usage timestamp
+    update_columns(password_reset_token: self.password_reset_token, reset_token_expires_at: self.reset_token_expires_at, reset_token_used_at: self.reset_token_used_at)
+  end  
+  
 
   # Check if user is verified
   def verified?

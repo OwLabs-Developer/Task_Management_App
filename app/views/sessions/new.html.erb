@@ -5,6 +5,13 @@
   <br>
   <%= render 'login_form' %>
   
+
+  <% if @user.present? %>
+  <%= link_to "Forgot Password?", password_reset_path(id: @user.id) %>
+  <% else %>
+  <%= link_to "Forgot Password?", forgot_password_path %>
+  <% end %>
+
   <% if session[:username] %>
     <p>Please verify your email before logging in. An email has been sent to <%= session[:username] %>.</p>
   <% end %>
