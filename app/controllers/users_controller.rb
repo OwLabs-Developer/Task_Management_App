@@ -30,7 +30,7 @@ class UsersController < ApplicationController
           raise e # Re-raise the exception to trigger the transaction rollback
         end
       else
-        render :new
+        redirect_to new_user_path, danger: "Please key in all of the details"
       end
     end
   end
