@@ -89,14 +89,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_20_102648) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
-    t.text "profile_information"
-    t.text "preferences"
+    t.string "profile_information"
+    t.string "theme_preferences"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "verification_token"
     t.boolean "verified", default: false
-    t.datetime "verification_token_expires_at", precision: nil, null: false
-    t.string "password_reset_token"
+    t.datetime "verification_token_expires_at"
+    t.string "reset_token"
     t.datetime "reset_token_expires_at"
     t.datetime "reset_token_used_at"
   end
