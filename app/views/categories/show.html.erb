@@ -1,0 +1,15 @@
+<h1><%= @category.name %></h1>
+
+<p><strong>Description:</strong></p>
+<p><%= @category.description %></p>
+
+<h2>Tasks in this Category:</h2>
+<ul>
+  <% @category_tasks.each do |task| %>
+    <li><%= task.title %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Delete', category_path(@category), method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', root_path %>

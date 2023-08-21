@@ -31,8 +31,9 @@ class TasksController < ApplicationController
         @task = current_user.tasks.find(params[:id]) 
     end
 
-    def update # Reupdate task edit by user
-       if @task = Task.update(task_params)
+    # Reupdate task edit by user
+    def update 
+       if @task.update(task_params)
         redirect_to tasks_path, success: "Task has been succesfully updated!"
         else
             render :edit

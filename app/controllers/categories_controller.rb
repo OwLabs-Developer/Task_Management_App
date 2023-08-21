@@ -1,37 +1,43 @@
 class CategoriesController < ApplicationController
     before_action :set_category, only:[:show, :edit, :update, :destroy]
 
-    def show ## Display the category
-        @categories = category.all
+    # Display the category
+    def show 
+        @category_tasks = @category.tasks
     end
 
-    def new ## Create the category instance that user input from form
-        @category = category.new
+     # Create the category instance that user input from form
+    def new
+        @category = Category.new
     end
 
-    def create ## Handle category creation and save to database
-        @category.new = category.find(category_params)
+    # Handle category creation and save to database
+    def create 
+        @category = Category.new(category_params)
         if @category.save
-            redirect_to root_path, notice: "New category added"
+            redirect_to root_path, success: "New category added!"
         else
             render :new
         end
     end
 
-    def edit ## Retrieve category data for user edit
+    # Retrieve category data for user edit
+    def edit 
     end
 
-    def update ## Reupdate latest category details from user 
-        if @category.update = category.find(category_params)
-            redirect_to root_path, notice: "Categories has been updated"
+    # Reupdate latest category details from user
+    def update  
+        if @category.update(category_params)
+            redirect_to root_path, success: "Categories has been updated!"
         else
             render :edit
         end
     end
 
-    def destroy ## Delete category data
+    # Delete category data
+    def destroy 
         @category.destroy
-        redirect_to root_path, notice: "Current category has been DELETED"
+        redirect_to root_path, info: "Current category has been deleted!"
     end
 
     private

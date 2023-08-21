@@ -29,7 +29,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-   constraints host: 'owlabs.online' do
+  #  constraints host: 'owlabs.online' do
     root 'dashboards#landing_page'
 
     resources :users do
@@ -49,12 +49,12 @@ Rails.application.routes.draw do
 
     # This route will display a form for users to enter their email to request a password reset.
     get '/forgot_password', to: 'password_resets#new', as: :forgot_password
-  end
-
-    get 'logout', to: 'sessions#destroy'
-    
+  # end
+  
     resources :tasks
     resources :categories
+
+    get 'logout', to: 'sessions#destroy'
 
     resources :dashboards
     get '/about', to: 'dashboards#about'
