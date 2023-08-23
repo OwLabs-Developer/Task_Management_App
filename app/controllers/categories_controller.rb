@@ -9,17 +9,26 @@ class CategoriesController < ApplicationController
      # Create the category instance that user input from form
     def new
         @category = Category.new
+        @collection = Category.all
     end
 
     # Handle category creation and save to database
-    def create 
+    def create
         @category = Category.new(category_params)
+        
         if @category.save
-            redirect_to root_path, success: "New category added!"
+          # Fetch the task that needs to be updated
+          task_to_update = Task.find(params[:category][:task_id])
+          
+          # Update the task's category_id to match the newly created category's id
+          task_to_update.update(category_id: @category.id)
+          redirect_to root_path, success: "Categories has been added!"
+          
         else
-            render :new
+          render :new
         end
-    end
+      end
+      
 
     # Retrieve category data for user edit
     def edit 
@@ -43,7 +52,7 @@ class CategoriesController < ApplicationController
     private
 
     def category_params
-        params.require(:category).permit(:name, :description)
+        params.require(:category).permit( :task_id, :name, :category_id)
     end
 
     def set_category

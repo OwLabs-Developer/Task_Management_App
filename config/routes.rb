@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   # end
   
     resources :tasks
-    resources :categories
+    resources :categories, only: [:new, :create]
 
     get 'logout', to: 'sessions#destroy'
 

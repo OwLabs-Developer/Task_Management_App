@@ -53,7 +53,7 @@ class SessionsController < ApplicationController
   # Handle the case where the user is verified
   def handle_verified_user(user)
     if user.authenticate(params[:password])
-      session[:user_id] ||= user.id
+      session[:user_id] = user.id
       flash[:success] = 'Logged in successfully!'
       redirect_to root_path
     else

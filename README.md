@@ -1,7 +1,7 @@
 <div style="text-align: center;">
     <h1>Task Management App 📌</h1>
     <p>A web-based application to master your tasks, to-do lists, and priorities. Boost your productivity and collaboration!</p>
-    <img src="app-screenshot.png" alt="App Screenshot">
+    <img src="landingSS.png" alt="App Screenshot">
 </div>
 
 ---

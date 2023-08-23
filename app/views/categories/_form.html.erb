@@ -12,13 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <%= form.label :task_id, "Select the associated task" %>
+<%= form.select :task_id, Task.all.map { |task| [task.title, task.id] }, prompt: "Select a task" %>
+
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <%= form.label :name, 'Category Type' %>
+  <% custom_options = ["A", "B", "C"] %>
+ <%= form.select :name, options_for_select(custom_options, "Select options"), {} %>
+
   </div>
 
   <div class="actions">

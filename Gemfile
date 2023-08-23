@@ -15,7 +15,7 @@ gem 'dotenv'
 gem 'securerandom'
 gem 'mailboxer'
 gem 'aws-sdk-ses', require: false
-
+gem 'ransack'
 
 # Real-time updates
 gem 'redis', '~> 4.0'

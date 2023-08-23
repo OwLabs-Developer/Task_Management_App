@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_20_102648) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_22_233015) do
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
+    t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "task_id", null: false
+    t.index ["task_id"], name: "index_categories_on_task_id"
   end
 
   create_table "mailboxer_conversation_opt_outs", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -49,10 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_20_102648) do
     t.boolean "global", default: false
     t.datetime "expires", precision: nil
     t.index ["conversation_id"], name: "index_mailboxer_notifications_on_conversation_id"
-    t.index ["notified_object_id", "notified_object_type"], name: "index_mailboxer_notifications_on_notified_object_id_and_type"
     t.index ["notified_object_type", "notified_object_id"], name: "mailboxer_notifications_notified_object"
-    t.index ["sender_id", "sender_type"], name: "index_mailboxer_notifications_on_sender_id_and_sender_type"
-    t.index ["type"], name: "index_mailboxer_notifications_on_type"
   end
 
   create_table "mailboxer_receipts", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -69,7 +67,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_20_102648) do
     t.string "delivery_method"
     t.string "message_id"
     t.index ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
-    t.index ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
   end
 
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -78,10 +75,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_20_102648) do
     t.date "due_date"
     t.integer "priority"
     t.boolean "status"
-    t.string "category"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_tasks_on_category_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
