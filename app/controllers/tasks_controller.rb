@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   
 
   def index
+    @tasks = Task.all
     @q = Task.joins(:category).ransack(params[:q])
     
     if params[:q] && !params[:q][:title_or_category_name_cont].present?

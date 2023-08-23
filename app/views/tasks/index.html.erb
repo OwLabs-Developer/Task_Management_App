@@ -1,13 +1,15 @@
 <h1>Your Tasks</h1>
 
+<div class="center-container">
 <%= search_form_for @q do |f| %>
-  <div class="field">
-    <%= f.label :title_or_category_name_cont, "Search Task Title or Category" %>
+
+<div class= "form">
+    <%= f.label :title_or_category_name_cont, "Search Title or Category", class: "input-label" %>
     <%= f.text_field :title_or_category_name_cont %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Search" %>
-  </div>
+    <%= f.submit "Search", class: "button" %>
+    <%= link_to "Refresh", tasks_path, class: "button" %>
+</div>
+
 <% end %>
 
 
@@ -33,7 +35,6 @@
           <% if task.category %>
             <%= task.category.name %>
           <% else %>
-            No Category
           <% end %>
         </td>
         <td>
@@ -46,5 +47,7 @@
     <% end %>
   </tbody>
 </table>
-
 <%= link_to 'New Task', new_task_path %>
+
+</div>
+

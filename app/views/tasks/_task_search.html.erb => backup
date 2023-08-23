@@ -1,0 +1,7 @@
+<%= form_tag tasks_path, method: :get do %>
+  <div class="form-group">
+    <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by title..." %>
+  </div>
+  <%= submit_tag "Search", class: "btn btn-primary mt-2" %>
+  <%= link_to "Refresh", tasks_path, class: "btn btn-secondary mt-2" %>
+<% end %>
